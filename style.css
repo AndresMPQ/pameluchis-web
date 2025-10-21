@@ -1,0 +1,216 @@
+/* COMENTARIO INGENIOSO: Siempre empieza con un reset,
+   así evitas conflictos de dependencias del navegador. */
+:root {
+    --primary-color: #ff69b4; /* Rosa bonito */
+    --secondary-color: #5d3a5a; /* Morado oscuro */
+    --light-color: #f7f7f7;
+    --dark-color: #333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+    padding: 40px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ## TIMELINE CSS ## */
+
+.timeline {
+    position: relative;
+    width: 80%;
+    max-width: 1200px;
+    margin: 60px auto;
+    /* Línea vertical central */
+    border-left: 2px solid var(--primary-color);
+}
+
+.timeline-event {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    margin-bottom: 50px;
+    opacity: 0; /* Oculto inicialmente para la animación */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Puntos en la línea de tiempo */
+.timeline-event::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--primary-color);
+    border: 4px solid var(--light-color);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Eventos a la izquierda (offset y animación) */
+.event-left {
+    left: 0;
+    transform: translateX(-100px);
+}
+.event-left::after {
+    right: -10px; /* Posiciona el punto a la derecha del evento */
+}
+.event-left .event-content {
+    text-align: right;
+}
+
+/* Eventos a la derecha (offset y animación) */
+.event-right {
+    left: 50%;
+    transform: translateX(100px);
+}
+.event-right::after {
+    left: -10px; /* Posiciona el punto a la izquierda del evento */
+}
+.event-right .event-content {
+    text-align: left;
+}
+
+.event-content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    /* CAMBIO CLAVE para centrar la foto y el texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+}
+
+.event-content h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+/* Clases para que la JS anime la entrada */
+.event-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Fecha del evento */
+.timeline-event::before {
+    content: attr(data-date);
+    position: absolute;
+    top: 15px;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+.event-left::before {
+    right: -100px;
+}
+.event-right::before {
+    left: -100px;
+}
+
+/* ## CARRUSEL CSS ## */
+.carrusel-section {
+    padding: 50px 20px;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+.carrusel-container {
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+}
+
+.carrusel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carrusel-item {
+    min-width: 100%;
+    height: auto;
+    display: none;
+    object-fit: cover;
+}
+
+.carrusel-item.active {
+    display: block;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.5rem;
+}
+
+#prevBtn { left: 10px; border-radius: 5px 0 0 5px;}
+#nextBtn { right: 10px; border-radius: 0 5px 5px 0;}
+
+/* DISEÑO RESPONSIVE (¡Impecable!) */
+@media (max-width: 768px) {
+    .timeline {
+        width: 90%;
+        margin-left: 20px;
+    }
+    .timeline-event {
+        width: 100%;
+        padding-left: 0;
+        margin-left: 0;
+        left: 0 !important; /* Anula los offsets */
+        transform: translateX(0) !important;
+    }
+    .timeline-event::after {
+        left: -10px !important;
+    }
+    .timeline-event::before {
+        display: none; /* Ocultar la fecha para no saturar */
+    }
+    .event-left .event-content,
+    .event-right .event-content {
+        text-align: left;
+    }
+}
+
+footer {
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.author-photo {
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%; /* Para hacerla redonda */
+    object-fit: cover; 
+    margin-top: 15px; 
+    border: 3px solid var(--primary-color); 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Ajuste para que el texto se alinee mejor */
+.event-content h2,
+.event-content p {
+    text-align: center; 
+    width: 100%; /* Asegura que tomen el ancho completo para centrarse */
+}
