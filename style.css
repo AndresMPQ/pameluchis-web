@@ -213,4 +213,40 @@ footer {
 .event-content p {
     text-align: center; 
     width: 100%; /* Asegura que tomen el ancho completo para centrarse */
+
+}
+
+/* ESTILOS PARA EL EVENTO TRISTE (DEDICATORIA) */
+
+/* Definimos el color del contenedor y el texto */
+.timeline-event.event-sad .event-content {
+    background-color: #e6e6ea; /* Gris muy claro (fondo tenue) */
+    color: #4a4e69; /* Azul/Gris oscuro para el texto */
+    border: 1px solid #c9c9d0; /* Borde suave */
+}
+
+/* Modificamos el color del título y de la línea de tiempo */
+.timeline-event.event-sad .event-content h2 {
+    color: #8d99ae; /* Color azul grisáceo (seriedad/tristeza) */
+}
+
+/* Cambiamos el color del punto y la línea para este evento */
+.timeline-event.event-sad::after {
+    background-color: #8d99ae; /* El círculo será azul/gris */
+    border-color: #e6e6ea; /* Borde del círculo */
+}
+
+/* Cambiamos el color de la fecha */
+.timeline-event.event-sad::before {
+    color: #4a4e69; /* Color de la fecha */
+}
+
+/* Modificamos el borde de la foto para que también sea triste (opcional, si quieres mantener el borde rosa de la foto del creador, omite esto) */
+.timeline-event.event-sad .author-photo {
+    border: 3px solid #8d99ae; /* Borde de la foto con el color de tristeza */
+}
+
+/* Y también debes asegurarte de justificar el párrafo interno */
+.timeline-event.event-sad .event-content p {
+    text-align: justify; /* <<< APLICADO AL PÁRRAFO DE LA DEDICATORIA */
 }
