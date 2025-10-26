@@ -213,7 +213,6 @@ footer {
 .event-content p {
     text-align: center; 
     width: 100%; /* Asegura que tomen el ancho completo para centrarse */
-
 }
 
 /* ESTILOS PARA EL EVENTO TRISTE (DEDICATORIA) */
@@ -250,3 +249,4 @@ footer {
 .timeline-event.event-sad .event-content p {
     text-align: justify; /* <<< APLICADO AL PÁRRAFO DE LA DEDICATORIA */
 }
+
